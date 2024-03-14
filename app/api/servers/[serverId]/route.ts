@@ -1,6 +1,32 @@
+import { NextRequest, NextResponse } from "next/server";
+
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { NextRequest, NextResponse } from "next/server";
+
+
+export async function DELETE(
+    req:Request,
+    {params}: {params: {serverId: string}}
+) {
+    try {
+        const profile = await currentProfile();
+        if(!profile) {
+            return new NextResponse("Unauthorized", { status: 401});
+        }
+
+        const server = await db.server.delete({
+            where: {
+                id: params.serverId,
+            }
+        });
+
+        return NextResponse.json(server);
+    } catch (error) {
+        console.log("[SERVER_ID_PATCH ", error);
+        return new NextResponse("InternalError", {status: 500});
+    }
+}
+
 
 export async function PATCH(
     req:Request,
@@ -30,3 +56,5 @@ export async function PATCH(
         return new NextResponse("InternalError", {status: 500});
     }
 }
+
+
