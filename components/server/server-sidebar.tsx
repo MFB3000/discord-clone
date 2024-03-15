@@ -1,7 +1,6 @@
 import { ChannelType, MemberRole } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { Hash, Mic, ShieldCheck, Video } from "lucide-react";
-import { channel } from "diagnostics_channel";
 
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
@@ -131,7 +130,7 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
       </ScrollArea>
       <Separator className="bg-zinc-200 dark:bg-zinc-700 rounded-md my-2" />
       {!!textChannels?.length && (
-        <div className="ml-2">
+        <div className="mx-2">
           <ServerSection
             sectionType="channels"
             channelType={ChannelType.TEXT}
@@ -151,7 +150,7 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
         </div>
       )}
       {!!audioChannels.length && (
-        <div className="ml-2">
+        <div className="mx-2">
           <ServerSection
             sectionType="channels"
             channelType={ChannelType.AUDIO}
@@ -171,7 +170,7 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
         </div>
       )}
       {!!videoChannels.length && (
-        <div className="ml-2">
+        <div className="mx-2">
           <ServerSection
             sectionType="channels"
             channelType={ChannelType.VIDEO}
@@ -191,7 +190,7 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
         </div>
       )}
       {!!members?.length && (
-        <div className="ml-2">
+        <div className="mx-2">
           <ServerSection
             sectionType="members"
             role={role}
